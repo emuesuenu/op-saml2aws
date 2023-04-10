@@ -26,7 +26,7 @@ function authenticate_saml2aws() {
   SAML2AWS_MFA_TOKEN=$(echo "$item_details" | jq -r '.fields[] | select(.type == "OTP") | .totp')
 
   # SAML2AWS 認証コマンドを実行
-  saml2aws login --skip-prompt \
+  saml2aws login --skip-prompt --force \
     --username=${SAML2AWS_USERNAME} \
     --password=${SAML2AWS_PASSWORD} \
     --mfa-token=${SAML2AWS_MFA_TOKEN} \
